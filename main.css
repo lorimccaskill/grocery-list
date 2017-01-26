@@ -2,14 +2,40 @@
 html {
   font-size: 10px;
 }
+
 body {
   margin: 0;
 }
+
 h1, h2, h3, h4, h5, h6, p, a, ul, ol, li {
   margin: 0;
   padding: 0;
 }
+
 a, a:hover, a:visited, a:active {
   text-decoration: none;
 }
 /*END override browser defaults*/
+
+#list-display {
+	margin: 1rem;
+	padding: 0.5rem;
+	border: solid 1px #ccc;
+}
+
+#list-display ul {
+	display: inline-block;
+	margin: 0.75rem;
+	padding: 0.5rem;
+	border: solid 1px #000;
+	vertical-align: top;
+}
+
+#list-display ul li {
+	list-style: none;
+}
+
+#list-display ul li:first-of-type {
+	font-weight: bold;
+	text-transform: capitalize;
+}

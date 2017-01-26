@@ -3,14 +3,18 @@ var listCount = 0;
 function createGroup(name) {
     var dynamicList = document.getElementById('list-display');
     var newGroup = document.createElement('ul');
-    newGroup.id = name + '-list';
-    newGroup.innerHTML = (name);
+    var groupName = document.createElement('li');
+
+    newGroup.id = name + '-list'; 
+    groupName.innerHTML = (name);
+    newGroup.appendChild(groupName);
     dynamicList.appendChild(newGroup);
 }
 
 function addListItem(item, type) {
     var listGroup = document.getElementById(type + '-list');
     var listItem = document.createElement('li');
+
     listItem.innerHTML = (item);
     listGroup.appendChild(listItem);
 }
