@@ -1,5 +1,3 @@
-var listCount = 0;
-
 function createGroup(name) {
     var dynamicList = document.getElementById('list-display');
     var newGroup = document.createElement('ul');
@@ -29,7 +27,6 @@ function processInput(newItem, category) {
         } else {
             addListItem(newItem, category);
         }
-        listCount++;
     } else {
         console.log('submit text is blank');
     }
