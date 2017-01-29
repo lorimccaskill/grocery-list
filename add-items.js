@@ -10,7 +10,7 @@ function createGroup(type) {
 function storeGroup(type) {
     // check to see if group already exists
     var groupFound = false;
-    for (var i=0; i<groceryList.length; i++) {
+    for (var i=0; i < groceryList.length; i++) {
         if(groceryList[i][0] == type) {
             groupFound = true;
         }
@@ -22,7 +22,7 @@ function storeGroup(type) {
 
 function storeItem(item, type) {
     var groupArray;
-    for (var i=0; i<groceryList.length; i++) {
+    for (var i=0; i < groceryList.length; i++) {
         // find correct 'group' array in groceryList that matches type
         if (groceryList[i][0] == type) {
             groupArray = groceryList[i];
@@ -68,9 +68,11 @@ function init() {
         var category = document.getElementById('food-group').value;
         processInput(newText, category);
         console.log('submit button clicked');
-        console.log('groceryList = ', groceryList);
+        //console.log('groceryList = ', groceryList);
         event.preventDefault();
     });
+
+    sortLists();
 }
 
 init();
