@@ -1,3 +1,23 @@
+var groceryList = [ ];
+
+function storeGroup(group) {
+    // add new group to groceryList array
+    var newGroup = [ ];
+    newGroup.push(group);
+    groceryList.push(newGroup);
+}
+
+function storeItem(item, type) {
+    var groupArray;
+    for (var i=0; i<groceryList.length; i++) {
+        // find correct 'group' array in groceryList that matches type
+        if (groceryList[i][0] == type) {
+            groupArray = groceryList[i];
+            groupArray.push(item);
+        }
+    }
+}
+
 function createGroup(name) {
     var dynamicList = document.getElementById('list-display');
     var newGroup = document.createElement('ul');
@@ -7,6 +27,7 @@ function createGroup(name) {
     groupName.innerHTML = (name);
     newGroup.appendChild(groupName);
     dynamicList.appendChild(newGroup);
+    storeGroup(name);
 }
 
 function addListItem(item, type) {
@@ -15,6 +36,7 @@ function addListItem(item, type) {
 
     listItem.innerHTML = (item);
     listGroup.appendChild(listItem);
+    storeItem(item, type);
 }
 
 function processInput(newItem, category) {
@@ -39,6 +61,7 @@ function init() {
         var category = document.getElementById('food-group').value;
         processInput(newText, category);
         console.log('submit button clicked');
+        console.log('groceryList = ', groceryList);
         event.preventDefault();
     });
 }
