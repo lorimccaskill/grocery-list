@@ -1,10 +1,23 @@
 var groceryList = [ ];
 
-function storeGroup(group) {
-    // add new group to groceryList array
+function createGroup(type) {
     var newGroup = [ ];
-    newGroup.push(group);
+    newGroup.push(type);
     groceryList.push(newGroup);
+    drawGroup(type);
+}
+
+function storeGroup(type) {
+    // check to see if group already exists
+    var groupFound = false;
+    for (var i=0; i<groceryList.length; i++) {
+        if(groceryList[i][0] == type) {
+            groupFound = true;
+        }
+    }
+    if (!groupFound) {
+        createGroup(type);
+    }
 }
 
 function storeItem(item, type) {
@@ -14,11 +27,12 @@ function storeItem(item, type) {
         if (groceryList[i][0] == type) {
             groupArray = groceryList[i];
             groupArray.push(item);
+            drawListItem(item, type);
         }
     }
 }
 
-function createGroup(name) {
+function drawGroup(name) {
     var dynamicList = document.getElementById('list-display');
     var newGroup = document.createElement('ul');
     var groupName = document.createElement('li');
@@ -27,28 +41,21 @@ function createGroup(name) {
     groupName.innerHTML = (name);
     newGroup.appendChild(groupName);
     dynamicList.appendChild(newGroup);
-    storeGroup(name);
 }
 
-function addListItem(item, type) {
+function drawListItem(item, type) {
     var listGroup = document.getElementById(type + '-list');
     var listItem = document.createElement('li');
 
     listItem.innerHTML = (item);
     listGroup.appendChild(listItem);
-    storeItem(item, type);
 }
 
 function processInput(newItem, category) {
     // confirm text input is not blank
-    if (newItem != '') {
-        // check to see if category's list already exists
-        if (!document.getElementById(category + '-list')) {
-            createGroup(category);
-            addListItem(newItem, category);
-        } else {
-            addListItem(newItem, category);
-        }
+    if (newItem !== '') {
+        storeGroup(category);
+        storeItem(newItem, category);
     } else {
         console.log('submit text is blank');
     }
